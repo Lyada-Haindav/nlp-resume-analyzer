@@ -231,11 +231,10 @@ else:
             # Clear all session state but stay on analysis page
             st.session_state.current_section = 'analysis'
             st.session_state.show_analysis = True
-        <div style="padding: 1rem 0; display: flex; flex-direction: column; align-items: flex-start;">
-            <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem; margin-left: 0;">Analysis</h1>
-            <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem; margin-left: 0;">Upload your resume and select a target role</p>
-        </div>
-        """, unsafe_allow_html=True)
+            st.session_state.analysis_complete = False
+            st.session_state.analysis_results = None
+            st.session_state.resume_text = ""
+            st.rerun()
     
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
