@@ -71,8 +71,13 @@ set_custom_css()
 # Navigation
 if st.session_state.current_section == 'home' or not st.session_state.get('show_analysis', False):
     # HOME PAGE
-    st.markdown('<h1 class="main-header">Resume Skill Analyzer</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="hero-subtitle">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>', unsafe_allow_html=True)
+    # Hero section with proper centering
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem 0;">
+        <h1 class="main-header" style="margin-bottom: 1rem;">Resume Skill Analyzer</h1>
+        <p class="hero-subtitle" style="margin-bottom: 2rem;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
@@ -138,23 +143,29 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
     # Add spacing
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # CTA
+    # CTA section with proper centering
+    st.markdown("""
+    <div style="text-align: center; padding: 3rem 0;">
+        <p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 1.1rem;">Ready to see how you match?</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Center the button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown("""
-        <div style="text-align: center; padding: 1.5rem 0;">
-            <p style="color: #94a3b8; margin-bottom: 1.25rem; font-size: 1rem;">Ready to see how you match?</p>
-        </div>
-        """, unsafe_allow_html=True)
         if st.button("Start Analysis", type="primary", use_container_width=True):
             st.session_state.current_section = 'analysis'
             st.session_state.show_analysis = True
             st.rerun()
 
 else:
-    # ANALYSIS PAGE
-    st.markdown('<h1 class="main-header" style="text-align: left; margin-bottom: 0.25rem;">Analysis</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>', unsafe_allow_html=True)
+    # ANALYSIS PAGE with proper layout
+    st.markdown("""
+    <div style="padding: 1rem 0;">
+        <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem;">Analysis</h1>
+        <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
