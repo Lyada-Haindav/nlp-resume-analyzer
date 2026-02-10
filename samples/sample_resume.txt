@@ -1,0 +1,57 @@
+John Doe
+Software Engineer
+Email: john.doe@email.com | Phone: (555) 123-4567 | LinkedIn: linkedin.com/in/johndoe
+
+PROFESSIONAL SUMMARY
+Experienced Software Engineer with 5+ years of expertise in full-stack development, cloud technologies, and agile methodologies. Proficient in Python, JavaScript, and modern web frameworks. Strong background in building scalable applications and implementing DevOps practices.
+
+TECHNICAL SKILLS
+Programming Languages: Python, JavaScript, Java, TypeScript, SQL
+Frontend Technologies: React, Vue.js, HTML5, CSS3, Redux
+Backend Technologies: Node.js, Express.js, Django, Spring Boot
+Databases: PostgreSQL, MongoDB, Redis, MySQL
+Cloud Platforms: AWS, Azure, Docker, Kubernetes
+DevOps Tools: Git, Jenkins, CI/CD, Terraform, Ansible
+Other Tools: REST APIs, GraphQL, Microservices, Agile, Scrum
+
+WORK EXPERIENCE
+Senior Software Engineer | Tech Corp Inc. | 2021-Present
+- Developed and maintained microservices architecture using Node.js and Express
+- Implemented CI/CD pipelines using Jenkins and Docker
+- Led a team of 4 developers in agile/scrum methodology
+- Optimized database queries improving performance by 40%
+- Deployed applications on AWS using Kubernetes
+
+Software Engineer | StartupXYZ | 2019-2021
+- Built responsive web applications using React and Redux
+- Developed REST APIs using Python and Django framework
+- Worked with PostgreSQL and MongoDB databases
+- Participated in code reviews and pair programming sessions
+- Implemented automated testing using Jest and PyTest
+
+Junior Developer | Code Solutions | 2018-2019
+- Assisted in developing web applications using JavaScript and React
+- Wrote SQL queries and database schemas
+- Learned and applied agile development practices
+- Collaborated with senior developers on feature development
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of Technology | 2014-2018
+GPA: 3.8/4.0
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect (2022)
+- Google Cloud Professional Developer (2021)
+- Certified ScrumMaster (2020)
+
+PROJECTS
+E-commerce Platform
+- Built a full-stack e-commerce solution using React, Node.js, and MongoDB
+- Implemented user authentication, payment processing, and inventory management
+- Deployed on AWS with Docker containers
+
+Data Analytics Dashboard
+- Created interactive dashboards using Python, Pandas, and Plotly
+- Integrated multiple data sources and real-time data updates
+- Implemented data visualization and reporting features

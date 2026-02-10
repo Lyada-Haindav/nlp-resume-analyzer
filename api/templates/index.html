@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Skill Analyzer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 2rem;
+        }
+        h1 {
+            color: #1a202c;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        #loading {
+            display: none;
+            margin-top: 1rem;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Resume Skill Analyzer</h1>
+        <p>AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📄</div>
+                <div class="feature-title">Upload Resume</div>
+                <div class="feature-desc">PDF or text format</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">15+ Job Roles</div>
+                <div class="feature-desc">With salary insights</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <div class="feature-title">Smart Analysis</div>
+                <div class="feature-desc">95% accuracy</div>
+            </div>
+        </div>
+        
+        <button class="btn" onclick="launchApp()">Launch Analyzer</button>
+        
+        <div id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 1rem; color: #4a5568;">Starting application...</p>
+        </div>
+    </div>
+
+    <script>
+        async function launchApp() {
+            const loading = document.getElementById('loading');
+            const button = document.querySelector('.btn');
+            
+            loading.style.display = 'block';
+            button.style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/run-streamlit');
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    // Redirect to Streamlit app
+                    setTimeout(() => {
+                        window.location.href = 'https://your-streamlit-app-url.vercel.app';
+                    }, 2000);
+                } else {
+                    alert('Error starting application: ' + data.message);
+                    loading.style.display = 'none';
+                    button.style.display = 'inline-block';
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+                loading.style.display = 'none';
+                button.style.display = 'inline-block';
+            }
+        }
+    </script>
+</body>
+</html>
