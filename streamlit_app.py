@@ -37,9 +37,16 @@ hide_sidebar_style = """
 <style>
     [data-testid="stSidebar"] { display: none !important; }
     .stMain {
-        max-width: 1000px !important;
+        max-width: 1200px !important;
         margin: 0 auto !important;
-        padding: 2rem 2.5rem !important;
+        padding: 1rem 1.5rem !important;
+    }
+    .stAppViewContainer {
+        padding-top: 2rem !important;
+    }
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
     }
 </style>
 """
@@ -67,6 +74,9 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
     st.markdown('<h1 class="main-header">Resume Skill Analyzer</h1>', unsafe_allow_html=True)
     st.markdown('<p class="hero-subtitle">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>', unsafe_allow_html=True)
     
+    # Add spacing
+    st.markdown("<br>", unsafe_allow_html=True)
+    
     # Stats row - compact
     col1, col2, col3, col4 = st.columns(4)
     stats = [
@@ -84,7 +94,8 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
             </div>
             """, unsafe_allow_html=True)
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Add spacing
+    st.markdown("<br><br>", unsafe_allow_html=True)
     
     # Features - cleaner 3-column
     st.markdown('<h2 class="sub-header">How it works</h2>', unsafe_allow_html=True)
@@ -124,8 +135,10 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
         </div>
         """, unsafe_allow_html=True)
     
+    # Add spacing
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
     # CTA
-    st.markdown("<br>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         st.markdown("""
@@ -140,14 +153,11 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
 
 else:
     # ANALYSIS PAGE
-    col_nav, col_title = st.columns([1, 5])
-    with col_nav:
-        if st.button("← Home", use_container_width=True):
-            st.session_state.current_section = 'home'
-            st.rerun()
-    with col_title:
-        st.markdown('<h1 class="main-header" style="text-align: left; margin-bottom: 0.25rem;">Analysis</h1>', unsafe_allow_html=True)
-        st.markdown('<p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header" style="text-align: left; margin-bottom: 0.25rem;">Analysis</h1>', unsafe_allow_html=True)
+    st.markdown('<p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>', unsafe_allow_html=True)
+    
+    # Add spacing
+    st.markdown("<br>", unsafe_allow_html=True)
     
     # Configuration Section
     st.markdown('<h2 class="sub-header">Setup</h2>', unsafe_allow_html=True)
@@ -164,7 +174,7 @@ else:
     
     with col2:
         st.markdown('<p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Target Role</p>', unsafe_allow_html=True)
-        job_skills_path = os.path.join(os.path.dirname(__file__), 'data', 'job_skills.json')
+        job_skills_path = os.path.join(current_dir, 'data', 'job_skills.json')
         
         try:
             skill_extractor = SkillExtractor(job_skills_path)
@@ -176,18 +186,19 @@ else:
             )
             
             # Display job role details
-            job_data = skill_extractor.job_skills_data['job_roles'][selected_job_role]
-            st.markdown(f"""
-            <div class="job-role-card">
-                <div class="job-role-title">{selected_job_role}</div>
-                <div class="job-role-meta">
-                    <span class="job-role-badge">{job_data['experience_level']}</span>
-                    <span class="job-role-badge">{job_data['salary_range']}</span>
-                    <span class="job-role-badge">{job_data['growth_potential']} Growth</span>
+            if selected_job_role:
+                job_data = skill_extractor.job_skills_data['job_roles'][selected_job_role]
+                st.markdown(f"""
+                <div class="job-role-card">
+                    <div class="job-role-title">{selected_job_role}</div>
+                    <div class="job-role-meta">
+                        <span class="job-role-badge">{job_data['experience_level']}</span>
+                        <span class="job-role-badge">{job_data['salary_range']}</span>
+                        <span class="job-role-badge">{job_data['growth_potential']} Growth</span>
+                    </div>
+                    <div class="job-role-description">{job_data['description']}</div>
                 </div>
-                <div class="job-role-description">{job_data['description']}</div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
                 
         except Exception as e:
             st.error(f"Error loading job roles: {e}")
