@@ -231,13 +231,6 @@ else:
             # Clear all session state but stay on analysis page
             st.session_state.current_section = 'analysis'
             st.session_state.show_analysis = True
-            st.session_state.analysis_complete = False
-            st.session_state.analysis_results = None
-            st.session_state.resume_text = ""
-            st.rerun()
-    
-    with col_title:
-        st.markdown("""
         <div style="padding: 1rem 0; display: flex; flex-direction: column; align-items: flex-start;">
             <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem; margin-left: 0;">Analysis</h1>
             <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem; margin-left: 0;">Upload your resume and select a target role</p>
@@ -247,7 +240,7 @@ else:
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Configuration Section with better layout
+    # Configuration Section
     st.markdown('<h2 class="sub-header">Setup</h2>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
@@ -292,22 +285,14 @@ else:
             st.error(f"Error loading job roles: {e}")
             selected_job_role = None
     
-    # Analyze button with better sizing and left positioning
+    # Analyze button
     if uploaded_file is not None and selected_job_role:
-        col1, col2, col3 = st.columns([0.3, 0.4, 0.3])
-        with col2:
-            analyze_button = st.button(
-                "📊 Analyze Resume",
-                type="primary",
-                use_container_width=True,
-                help="Start skill gap analysis"
-            )
-        
-        with col3:
-            if st.button("🗑️ Clear Fields", key="clear_button", use_container_width=True, help="Clear all fields and start fresh"):
-                st.session_state.clear()
-                st.session_state.current_page = "analysis"
-                st.rerun()
+        analyze_button = st.button(
+            "📊 Analyze Resume",
+            type="primary",
+            use_container_width=True,
+            help="Start skill gap analysis"
+        )
         
         if analyze_button:
             # Validate file before processing
