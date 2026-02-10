@@ -247,7 +247,7 @@ else:
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Configuration Section
+    # Configuration Section with better layout
     st.markdown('<h2 class="sub-header">Setup</h2>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
@@ -292,14 +292,16 @@ else:
             st.error(f"Error loading job roles: {e}")
             selected_job_role = None
     
-    # Analyze button
+    # Analyze button with better sizing
     if uploaded_file is not None and selected_job_role:
-        analyze_button = st.button(
-            "Analyze Resume",
-            type="primary",
-            use_container_width=True,
-            help="Start skill gap analysis"
-        )
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            analyze_button = st.button(
+                "📊 Analyze Resume",
+                type="primary",
+                use_container_width=True,
+                help="Start skill gap analysis"
+            )
         
         if analyze_button:
             # Validate file before processing
