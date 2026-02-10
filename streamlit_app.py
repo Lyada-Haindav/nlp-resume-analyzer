@@ -14,8 +14,9 @@ import os
 from typing import Dict, List
 
 # Add modules to path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'nlp_modules'))
-sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(current_dir, 'nlp_modules'))
+sys.path.append(os.path.join(current_dir, 'utils'))
 
 from nlp_modules.skill_extractor import SkillExtractor
 from utils.pdf_extractor import PDFExtractor
@@ -47,6 +48,8 @@ st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 # Initialize session state for navigation
 if 'current_section' not in st.session_state:
     st.session_state.current_section = 'home'
+if 'show_analysis' not in st.session_state:
+    st.session_state.show_analysis = False
 
 if 'analysis_complete' not in st.session_state:
     st.session_state.analysis_complete = False
@@ -59,7 +62,7 @@ if 'analysis_results' not in st.session_state:
 set_custom_css()
 
 # Navigation
-if st.session_state.current_section == 'home':
+if st.session_state.current_section == 'home' or not st.session_state.get('show_analysis', False):
     # HOME PAGE
     st.markdown('<h1 class="main-header">Resume Skill Analyzer</h1>', unsafe_allow_html=True)
     st.markdown('<p class="hero-subtitle">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>', unsafe_allow_html=True)
@@ -132,6 +135,7 @@ if st.session_state.current_section == 'home':
         """, unsafe_allow_html=True)
         if st.button("Start Analysis", type="primary", use_container_width=True):
             st.session_state.current_section = 'analysis'
+            st.session_state.show_analysis = True
             st.rerun()
 
 else:
