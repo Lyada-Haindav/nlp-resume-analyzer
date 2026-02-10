@@ -240,7 +240,7 @@ else:
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Configuration Section
-    st.markdown('<h2 class="sub-header">Setup</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="sub-header">Analyze</h2>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
