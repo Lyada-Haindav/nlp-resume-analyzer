@@ -219,9 +219,9 @@ else:
     
     with col_title:
         st.markdown("""
-        <div style="padding: 1rem 0;">
-            <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem;">Analysis</h1>
-            <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>
+        <div style="padding: 1rem 0; text-align: left;">
+            <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem; margin-left: 0;">Analysis</h1>
+            <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem; margin-left: 0;">Upload your resume and select a target role</p>
         </div>
         """, unsafe_allow_html=True)
     
