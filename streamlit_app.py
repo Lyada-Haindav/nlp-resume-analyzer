@@ -284,7 +284,7 @@ else:
             st.error(f"Error loading job roles: {e}")
             selected_job_role = None
     
-    # Analyze button
+    # Analyze button - moved to setup section
     if uploaded_file is not None and selected_job_role:
         analyze_button = st.button(
             "📊 Analyze Resume",
