@@ -352,20 +352,21 @@ else:
                                             category_analysis = skill_analyzer.get_skill_category_analysis(
                                                 resume_skills, required_skills, skill_extractor.job_skills_data['technical_skills_database']
                                             )
-                                            
+
                                             # Store results
                                             analysis_results['category_analysis'] = category_analysis
                                             analysis_results['resume_skills'] = resume_skills
                                             analysis_results['required_skills'] = required_skills
                                             st.session_state.analysis_results = analysis_results
                                             st.session_state.analysis_complete = True
-                                            
+
                                             # Show success message with details
                                             st.success(f"✅ Analysis completed! Found {len(resume_skills)} skills in your resume and analyzed against {len(required_skills)} required skills.")
-                                            
+
                             except Exception as e:
                                 st.error(f"❌ Error during analysis: {str(e)}")
                                 st.info("💡 Please ensure your resume is in a supported format (PDF/TXT) and contains readable text content.")
+
     
     # Display results section with clear option
     if st.session_state.analysis_complete and st.session_state.analysis_results:
