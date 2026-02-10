@@ -159,13 +159,39 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
             st.rerun()
 
 else:
-    # ANALYSIS PAGE with proper layout
-    st.markdown("""
-    <div style="padding: 1rem 0;">
-        <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem;">Analysis</h1>
-        <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # ANALYSIS PAGE with proper layout and navigation
+    # Navigation bar with Home and Clear buttons
+    col_nav1, col_nav2, col_title = st.columns([1, 1, 4])
+    with col_nav1:
+        if st.button("🏠 Home", use_container_width=True):
+            st.session_state.current_section = 'home'
+            st.session_state.show_analysis = False
+            # Clear analysis data
+            if 'analysis_complete' in st.session_state:
+                st.session_state.analysis_complete = False
+            if 'analysis_results' in st.session_state:
+                st.session_state.analysis_results = None
+            if 'resume_text' in st.session_state:
+                st.session_state.resume_text = ""
+            st.rerun()
+    
+    with col_nav2:
+        if st.button("🗑️ Clear", use_container_width=True, help="Clear all fields and start fresh"):
+            # Clear all session state
+            st.session_state.current_section = 'analysis'
+            st.session_state.show_analysis = True
+            st.session_state.analysis_complete = False
+            st.session_state.analysis_results = None
+            st.session_state.resume_text = ""
+            st.rerun()
+    
+    with col_title:
+        st.markdown("""
+        <div style="padding: 1rem 0;">
+            <h1 class="main-header" style="text-align: left; margin-bottom: 0.5rem;">Analysis</h1>
+            <p class="hero-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Upload your resume and select a target role</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     # Add spacing
     st.markdown("<br>", unsafe_allow_html=True)
@@ -288,9 +314,18 @@ else:
                                 st.error(f"❌ Error during analysis: {str(e)}")
                                 st.info("💡 Please ensure your resume is in a supported format (PDF/TXT) and contains readable text content.")
     
-    # Display results
+    # Display results section with clear option
     if st.session_state.analysis_complete and st.session_state.analysis_results:
         results = st.session_state.analysis_results
+        
+        # Add clear results button
+        col_clear, col_spacer = st.columns([1, 5])
+        with col_clear:
+            if st.button("🗑️ Clear Results", use_container_width=True, help="Clear analysis results and start fresh"):
+                st.session_state.analysis_complete = False
+                st.session_state.analysis_results = None
+                st.session_state.resume_text = ""
+                st.rerun()
         
         # Key metrics row
         st.markdown('<h2 class="sub-header">Summary</h2>', unsafe_allow_html=True)
