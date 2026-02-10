@@ -42,11 +42,13 @@ hide_sidebar_style = """
         width: 100% !important;
         left: 0 !important;
         right: 0 !important;
+        position: relative !important;
     }
     .stAppViewContainer {
         padding-top: 1rem !important;
         max-width: 100% !important;
         width: 100% !important;
+        position: relative !important;
     }
     .block-container {
         max-width: 100% !important;
@@ -55,10 +57,27 @@ hide_sidebar_style = """
         width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+        position: relative !important;
     }
     .element-container {
         width: 100% !important;
         max-width: 100% !important;
+        position: relative !important;
+    }
+    /* Force left alignment for headers */
+    .main-header {
+        text-align: left !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+    .hero-subtitle {
+        text-align: left !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+    /* Override any centering */
+    div[style*="text-align: center"] {
+        text-align: left !important;
     }
     @media (max-width: 768px) {
         .stMain {
