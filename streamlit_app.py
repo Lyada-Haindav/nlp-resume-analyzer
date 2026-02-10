@@ -75,7 +75,7 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
     st.markdown("""
     <div style="text-align: center; padding: 2rem 0;">
         <h1 class="main-header" style="margin-bottom: 1rem;">Resume Skill Analyzer</h1>
-        <p class="hero-subtitle" style="margin-bottom: 2rem;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
+        <p class="hero-subtitle" style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -160,7 +160,7 @@ if st.session_state.current_section == 'home' or not st.session_state.get('show_
 
 else:
     # ANALYSIS PAGE with proper layout and navigation
-    # Navigation bar with Home and Clear buttons
+    # Navigation bar with Home and Clear buttons (equal size)
     col_nav1, col_nav2, col_title = st.columns([1, 1, 4])
     with col_nav1:
         if st.button("🏠 Home", use_container_width=True):
@@ -176,8 +176,8 @@ else:
             st.rerun()
     
     with col_nav2:
-        if st.button("🗑️ Clear", use_container_width=True, help="Clear all fields and start fresh"):
-            # Clear all session state
+        if st.button("🗑️ Clear Fields", use_container_width=True, help="Clear all fields and start fresh"):
+            # Clear all session state but stay on analysis page
             st.session_state.current_section = 'analysis'
             st.session_state.show_analysis = True
             st.session_state.analysis_complete = False
@@ -318,7 +318,7 @@ else:
     if st.session_state.analysis_complete and st.session_state.analysis_results:
         results = st.session_state.analysis_results
         
-        # Add clear results button
+        # Add clear results button (same size as other buttons)
         col_clear, col_spacer = st.columns([1, 5])
         with col_clear:
             if st.button("🗑️ Clear Results", use_container_width=True, help="Clear analysis results and start fresh"):
