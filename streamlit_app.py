@@ -292,9 +292,14 @@ else:
             st.error(f"Error loading job roles: {e}")
             selected_job_role = None
     
-    # Analyze button with better sizing
+    # Analyze button with better sizing and left positioning
     if uploaded_file is not None and selected_job_role:
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, col3 = st.columns([0.3, 0.4, 0.3])
+        with col1:
+            if st.button("🏠 Home", key="home_button", use_container_width=True):
+                st.session_state.current_page = "home"
+                st.rerun()
+        
         with col2:
             analyze_button = st.button(
                 "📊 Analyze Resume",
@@ -302,6 +307,12 @@ else:
                 use_container_width=True,
                 help="Start skill gap analysis"
             )
+        
+        with col3:
+            if st.button("🗑️ Clear Fields", key="clear_button", use_container_width=True, help="Clear all fields and start fresh"):
+                st.session_state.clear()
+                st.session_state.current_page = "analysis"
+                st.rerun()
         
         if analyze_button:
             # Validate file before processing
