@@ -23,11 +23,11 @@ from utils.pdf_extractor import PDFExtractor
 from utils.skill_analyzer import SkillAnalyzer
 from utils.shared import set_custom_css, create_progress_ring, create_skill_bar_chart, create_skill_radar_chart, display_skill_cards
 
-# Page configuration with wide layout
+# Page configuration with wide layout and no auth redirects
 st.set_page_config(
     page_title="Resume Skill Analyzer",
-    page_icon="📄",
-    layout="wide",  # Set layout to wide for better screen utilization
+    page_icon="�",
+    layout="wide",
     initial_sidebar_state="collapsed"
 )
 
