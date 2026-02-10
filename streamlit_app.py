@@ -23,30 +23,50 @@ from utils.pdf_extractor import PDFExtractor
 from utils.skill_analyzer import SkillAnalyzer
 from utils.shared import set_custom_css, create_progress_ring, create_skill_bar_chart, create_skill_radar_chart, display_skill_cards
 
-# Page configuration
+# Page configuration with wide layout
 st.set_page_config(
-    page_title="AI Resume Skill Gap Analyzer",
-    page_icon="",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-    menu_items={}
+    page_title="Resume Skill Analyzer",
+    page_icon="📄",
+    layout="wide",  # Set layout to wide for better screen utilization
+    initial_sidebar_state="collapsed"
 )
 
-# Hide sidebar and set main content width
+# Hide sidebar and set main content width for responsive design
 hide_sidebar_style = """
 <style>
     [data-testid="stSidebar"] { display: none !important; }
     .stMain {
-        max-width: 1200px !important;
+        max-width: 1400px !important;
         margin: 0 auto !important;
-        padding: 1rem 1.5rem !important;
+        padding: 1rem 2rem !important;
+        width: 95% !important;
     }
     .stAppViewContainer {
-        padding-top: 2rem !important;
+        padding-top: 1rem !important;
+        max-width: 100% !important;
     }
     .block-container {
+        max-width: 1400px !important;
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
+    }
+    @media (max-width: 768px) {
+        .stMain {
+            padding: 0.5rem 1rem !important;
+            width: 98% !important;
+        }
+        .block-container {
+            padding: 0.5rem 1rem !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .stMain {
+            padding: 0.25rem 0.5rem !important;
+            width: 100% !important;
+        }
+        .block-container {
+            padding: 0.25rem 0.5rem !important;
+        }
     }
 </style>
 """
@@ -71,11 +91,11 @@ set_custom_css()
 # Navigation
 if st.session_state.current_section == 'home' or not st.session_state.get('show_analysis', False):
     # HOME PAGE
-    # Hero section with proper centering
+    # Hero section with proper centering and responsive width
     st.markdown("""
-    <div style="text-align: center; padding: 2rem 0;">
+    <div style="text-align: center; padding: 2rem 1rem; max-width: 100%;">
         <h1 class="main-header" style="margin-bottom: 1rem;">Resume Skill Analyzer</h1>
-        <p class="hero-subtitle" style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
+        <p class="hero-subtitle" style="margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
     </div>
     """, unsafe_allow_html=True)
     
