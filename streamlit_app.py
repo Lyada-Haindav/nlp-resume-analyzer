@@ -31,32 +31,43 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Hide sidebar and set main content width for responsive design
+# Hide sidebar and set main content width for full corner-to-corner utilization
 hide_sidebar_style = """
 <style>
     [data-testid="stSidebar"] { display: none !important; }
     .stMain {
-        max-width: 1400px !important;
-        margin: 0 auto !important;
-        padding: 1rem 2rem !important;
-        width: 95% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 1rem 1.5rem !important;
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
     }
     .stAppViewContainer {
         padding-top: 1rem !important;
         max-width: 100% !important;
+        width: 100% !important;
     }
     .block-container {
-        max-width: 1400px !important;
+        max-width: 100% !important;
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .element-container {
+        width: 100% !important;
+        max-width: 100% !important;
     }
     @media (max-width: 768px) {
         .stMain {
             padding: 0.5rem 1rem !important;
-            width: 98% !important;
+            width: 100% !important;
         }
         .block-container {
             padding: 0.5rem 1rem !important;
+            width: 100% !important;
         }
     }
     @media (max-width: 480px) {
@@ -66,6 +77,7 @@ hide_sidebar_style = """
         }
         .block-container {
             padding: 0.25rem 0.5rem !important;
+            width: 100% !important;
         }
     }
 </style>
@@ -91,11 +103,11 @@ set_custom_css()
 # Navigation
 if st.session_state.current_section == 'home' or not st.session_state.get('show_analysis', False):
     # HOME PAGE
-    # Hero section with proper centering and responsive width
+    # Hero section with full width utilization
     st.markdown("""
-    <div style="text-align: center; padding: 2rem 1rem; max-width: 100%;">
+    <div style="text-align: center; padding: 2rem 0; width: 100%;">
         <h1 class="main-header" style="margin-bottom: 1rem;">Resume Skill Analyzer</h1>
-        <p class="hero-subtitle" style="margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
+        <p class="hero-subtitle" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.6;">AI-powered skill gap analysis. Upload your resume, pick a role, and get actionable insights in seconds.</p>
     </div>
     """, unsafe_allow_html=True)
     
