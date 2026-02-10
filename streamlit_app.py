@@ -295,11 +295,6 @@ else:
     # Analyze button with better sizing and left positioning
     if uploaded_file is not None and selected_job_role:
         col1, col2, col3 = st.columns([0.3, 0.4, 0.3])
-        with col1:
-            if st.button("🏠 Home", key="home_button", use_container_width=True):
-                st.session_state.current_page = "home"
-                st.rerun()
-        
         with col2:
             analyze_button = st.button(
                 "📊 Analyze Resume",
